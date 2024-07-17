@@ -1,0 +1,53 @@
+<div class="grid grid-cols-5">
+  <div class="col-span-4">
+    <div class="p-4 bg-[#bee0ec]  font-semibold text-md">
+      <h2 class="font-bold text-lg">Add a new deal</h2>
+    </div>
+    <div class="p-4">
+      <.simple_form for={@form} phx-change="validate" phx-submit="save">
+        <.input field={@form[:name]} label="Name" required />
+        <.input field={@form[:description]} label="Description" required type="textarea" />
+        <div class="flex space-x-4 w-full">
+          <.input field={@form[:amount]} label="Amount" required type="number" />
+          <.input
+            field={@form[:deal_type]}
+            label="Deal Type"
+            required
+            type="select"
+            options={["Fixed Bid", "Contract"]}
+          />
+        </div>
+        <.input
+          field={@form[:who_can_see]}
+          label="Who is responsible for this deal?"
+          required
+          type="select"
+          options={["Abass", "Garane"]}
+        />
+        <.input
+          field={@form[:who_can_see]}
+          label="Who else can see this deal?"
+          required
+          type="select"
+          options={["Abass", "Garane"]}
+        />
+
+        <:actions>
+          <div>
+            <.button>Add This Deal</.button>
+            <.link navigate="/deals" class="text-blue-600 font-semibold">or cancel</.link>
+          </div>
+        </:actions>
+      </.simple_form>
+    </div>
+  </div>
+  <div class="p-4 prose pt-3 bg-gray-100 h-[100vh]">
+    <h3 class="font-bold text-md underline underline-offset-2">What is a deal?</h3>
+    <p class="text-md leading-10 tracking-normal">
+      A deal is a money-based project you have up for bid or contract.
+      Deals let you keep track of proposals, bids, RFPs and project sales right inside Garane.
+      Garane has always been great for keeping track of the people you do business with,
+      but now with deals, you can keep track of all your transactions as well.
+    </p>
+  </div>
+</div>

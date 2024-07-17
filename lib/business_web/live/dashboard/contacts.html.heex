@@ -1,0 +1,46 @@
+<div class="bg-[#bee0ec] text-md flex items-center justify-between px-4 py-3">
+  <p class="">
+    Showing <a href="#" class="text-blue-800 font-semibold">All People and Companies</a>
+  </p>
+  <p>
+    Viewing
+    <strong>
+      <%= @contacts_displayed %>
+    </strong>
+    Contacts of
+    <strong>
+      <%= @total_contacts %>
+    </strong>
+  </p>
+</div>
+<div class="px-10 py-3 overscroll-auto overflow-auto">
+  <.table id="contacts" rows={@contacts}>
+    <:col :let={contact} label="UD">
+      <%= contact.id %>
+    </:col>
+    <:col :let={contact} label="Full Name">
+      <%= contact.full_name %>
+    </:col>
+    <:col :let={contact} label="Email">
+      <%= "user#{contact.id}@yahoo.com" %>
+    </:col>
+
+    <:col :let={contact} label="Position">
+      <%= contact.position %>
+    </:col>
+    <:col :let={contact} label="Links">
+      <div class="space-x-4">
+        <.link navigate={~p"/contacts/#{contact.id}"} class="text-blue-600 font-semibold text-md">
+          View
+        </.link>
+        <.link
+          navigate={~p"/contacts/#{contact.id}"}
+          class="text-red-600 font-semibold text-md"
+          method="delete"
+        >
+          Delete
+        </.link>
+      </div>
+    </:col>
+  </.table>
+</div>

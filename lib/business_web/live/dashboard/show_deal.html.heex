@@ -1,0 +1,73 @@
+<div class="flex flex-row  bg-blue-100 h-[99vh]">
+  <div class="bg-white w-full">
+      <div class="flex justify-between p-4 bg-blue-100">
+        <div class="flex flex-row space-x-4">
+          <div class="rounded-full w-20 h-20 bg-red-300 shadow flex items-center justify-center">
+            <.icon name="hero-currency-pound" class="text-xl text-white h-16 w-16" />
+          </div>
+          <div class="flex flex-col space-y-2">
+            <h2 class="font-bold text-2xl">
+              <%= @deal.deal_with <> @deal.name %>
+            </h2>
+            <.link navigate={~p"/companies/3"} class="text-black font-bold text-md">
+              <%= @deal.name <> " - " <> "Ksh. " <> "15,000 " <> @deal.deal_type %>
+            </.link>
+            <.link navigate={~p"/deals/3/tags"} class="text-gray-600 font-semibold text-sm">
+              <%= @deal.responsible_employee %> is responsible
+            </.link>
+          </div>
+        </div>
+        <div class="flex flex-col space-y-3">
+          <h3 class="text-red-500 underline font-semibold flex justify-end">Edit this deal</h3>
+          <div class="rounded-full flex flex-row p-2 shadow-md -ml-30 space-x-4 bg-gray-100">
+            <span class="font-bold p-2 rounded-l-full shadow-xl border-r bg-violet-700 text-white">
+              Pending
+            </span>
+            <span class="font-bold p-2  border-r">
+              Won
+            </span>
+            <span class="font-bold p-2 rounded-r-full">Lost</span>
+          </div>
+        </div>
+    </div>
+    <div class="p-4">
+      <div class="flex flex-col h-90 p-4">
+        <div class="flex flex-row justify-between">
+          <div class="flex flex-row space-x-4 items-center p-2 rounded hover:bg-blue-200 w-1/2">
+            <div class="bg-blue-900 p-1 rounded-md">
+              <.icon name="hero-document-minus" class="h-8 w-8 text-xl text-white" />
+            </div>
+            <h3 class="font-semibold text-sm text-black">
+              Add a note about <%= String.split(@deal.name) |> Enum.at(1) %>
+            </h3>
+          </div>
+        </div>
+        <div class="mt-4 space-y-4">
+          <.input field={@form["note"]} type="textarea" name="note" value="" />
+          <button type="submit" class="float-right text-white bg-blue-700 font-semibold px-2 py-1 rounded">
+            Add this note
+          </button>
+        </div>
+      </div>
+
+      <hr />
+      <hr />
+    </div>
+    <div class="p-4">
+      <div class="flex flex-row justify-between">
+        <h3 class="font-semibold text-md">Showing latest activity from everyone</h3>
+        <p class="underline">Subscribe to daily digest emails</p>
+      </div>
+      <div class="mt-8">
+        <div class="flex flex-row space-x-2 bg-gray-100 rounded items-center">
+          <button type="button" class="bg-black text-white font-semibold p-1 rounded-lg">
+            Created
+          </button>
+          <p class="text-gray-800 text-sm">
+            The deal <%= @deal.name %> was created by <%= @deal.responsible_employee %> on <%= @deal.created_at %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

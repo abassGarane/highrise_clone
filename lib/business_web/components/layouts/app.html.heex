@@ -1,0 +1,8 @@
+<.live_component module={BusinessWeb.Components.Header} id="header" current_user={@current_user} />
+<main class="flex flex-row bg-gray-100 px-10 pt-8 -space-x-8 md:-space-x-16">
+  <.live_component module={BusinessWeb.Components.SideBar} id="sidebar" @assigns />
+  <.flash_group flash={@flash} />
+  <section class="bg-white w-4/5 rounded-lg opacity-90 ">
+    <%= @inner_content %>
+  </section>
+</main>

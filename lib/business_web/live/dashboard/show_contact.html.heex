@@ -1,0 +1,80 @@
+<div class="flex flex-row  bg-blue-100 h-[99vh]">
+  <div class="bg-white w-2/3">
+    <div class="flex flex-row space-x-4 p-4">
+      <div class="rounded-full w-20 h-20 bg-red-300 shadow flex items-center justify-center">
+        <.icon name="hero-currency-pound" class="text-xl text-white h-16 w-16" />
+      </div>
+      <div class="flex flex-col space-y-2">
+        <h2 class="font-bold text-2xl">
+          <%= @contact.full_name %>
+        </h2>
+        <.link navigate={~p"/companies/3"} class="text-black font-semibold text-md">
+          <%= @contact.company_name %>
+        </.link>
+        <.link navigate={~p"/contacts/3/tags"} class="text-gray-600 font-semibold text-sm">
+          Add Tags
+        </.link>
+      </div>
+    </div>
+    <div class="p-4">
+      <div class="flex flex-col bg-blue-100 h-90 p-4">
+        <div class="flex flex-row justify-between">
+          <div class="flex flex-row space-x-4 items-center p-2 rounded hover:bg-blue-200 w-1/2">
+            <div class="bg-blue-900 p-1 rounded-md">
+              <.icon name="hero-document-minus" class="h-8 w-8 text-xl text-white" />
+            </div>
+            <h3 class="font-semibold text-sm text-black">
+              Add a note about <%= String.split(@contact.full_name) |> Enum.at(1) %>
+            </h3>
+          </div>
+          <div class="flex flex-row space-x-4 items-center p-2 rounded hover:bg-blue-200 w-1/2">
+            <div class="bg-blue-900 p-1 rounded-md">
+              <.icon name="hero-envelope" class="text-xl text-white h-8 w-8" />
+            </div>
+            <h3 class="font-semibold font-md text-black">
+              Send an email to <%= String.split(@contact.full_name) |> Enum.at(1) %>
+            </h3>
+          </div>
+        </div>
+        <div class="mt-4 space-y-4">
+          <.input field={@form["note"]} type="textarea" name="note" value="" />
+          <.button type="submit" class="float-right text-white bg-blue-900">
+            Add this note
+          </.button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col w-1/3 mt-2 space-y-4">
+    <h3 class="font-medium text-md text-red-600 underline px-4">
+      <.link href={~p"/contacts/edit/2"}>Edit Contact </.link>
+    </h3>
+    <div>
+      <h2 class="p-2 w-full bg-gray-200 text-gray-800 shadow-md px-4 py-3">Tasks</h2>
+      <p class="px-4 py-2 space-x-2">
+        <.link href="#" class="text-blue-600">Add Task</.link>
+        about <%= String.split(@contact.full_name) |> Enum.at(1) %>
+      </p>
+    </div>
+    <div class="w-full space-y-4">
+      <h2 class="px-4 py-3 w-full bg-gray-200 text-gray-800 shadow-md">Personal Info</h2>
+      <div class="space-y-4 px-4">
+        <h3 class="font-semibold text-md text-blue-600 underline">
+          <%= @contact.email %>
+          <br />
+          <span class="font-normal text-sm text-gray-600 underline-none"> Work </span>
+        </h3>
+        <h2 class="font-semibold text-gray-800">
+          Primary Phone Number : <%= @contact.phone_number %>
+        </h2>
+        <h2 class="font-semibold text-gray-800">
+          Secondary Phone Number : <%= @contact.phone_number %>
+        </h2>
+        <address class="mt-2">
+          P.O BOX <%= @contact.address.postal_code %>
+          <%= @contact.address.city %>, <%= @contact.address.country %>
+        </address>
+      </div>
+    </div>
+  </div>
+</div>
